@@ -24,7 +24,7 @@ class Ball {
         if (this.x + this.dx > canvas.width - this.radius || this.x + this.dx < this.radius) {
             this.dx = -this.dx;
         }
-    }
+    
     // Check for collision with top or bottom walls
     if (this.y + this.dy > canvas.height - this.radius || this.y + this.dy < this.radius) {
         this.dy = -this.dy;
@@ -32,4 +32,24 @@ class Ball {
     // Update the ball's position
     this.x += this.dx;
     this.y += this.dy;
+    }
 }
+
+// Create a canvas element
+const canvas = document.getElementById(`animationCanvas`);
+const ctx = canvas.getContext(`2d`);
+
+// Initialize the ball with given properties
+const ball = new Ball(200, 160, 20, 2, 2, `red`);
+
+// Animate the ball
+function animate() {
+    // Clear the canvas 
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Draw and update the ball
+    ball.draw(ctx);
+    ball.update(canvas);
+}
+
+// Use setInterval to create an animation loop
+setInterval(animate, 20);
